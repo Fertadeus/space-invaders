@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://crccc1pg0jqym"]
+
+[ext_resource type="Script" path="res://pantalla1.gd" id="1_cm6s1"]
+[ext_resource type="PackedScene" uid="uid://dnyxhm2c830pd" path="res://alien.tscn" id="3_kvu7s"]
+[ext_resource type="PackedScene" uid="uid://dxp73nwfnbqn" path="res://nave.tscn" id="4_dult8"]
+[ext_resource type="FontFile" uid="uid://cgbpovnokrkdu" path="res://Art/Pixeled.ttf" id="5_kwlkn"]
+
+[node name="Pantalla1" type="Node"]
+script = ExtResource("1_cm6s1")
+alien = ExtResource("3_kvu7s")
+
+[node name="Nave" parent="." instance=ExtResource("4_dult8")]
+position = Vector2(234, 615)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 409.0
+offset_top = 7.0
+offset_right = 475.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("5_kwlkn")
+horizontal_alignment = 1

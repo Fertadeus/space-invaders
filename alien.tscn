@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dnyxhm2c830pd"]
+
+[ext_resource type="Texture2D" uid="uid://dcbg013iwj4be" path="res://Art/Alien1.png" id="1_pd85y"]
+[ext_resource type="Script" path="res://alien.gd" id="1_r7rqt"]
+[ext_resource type="Texture2D" uid="uid://bwe4pm4grsmx3" path="res://Art/Explosion1.png" id="3_6ht1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kogfp"]
+atlas = ExtResource("1_pd85y")
+region = Rect2(0, 10, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvmyf"]
+atlas = ExtResource("1_pd85y")
+region = Rect2(32, 10, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64wsq"]
+atlas = ExtResource("3_6ht1j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjs05"]
+atlas = ExtResource("3_6ht1j")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbwfl"]
+atlas = ExtResource("3_6ht1j")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3xqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kogfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvmyf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64wsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjs05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbwfl")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxpge"]
+size = Vector2(8, 5)
+
+[node name="Alien" type="Area2D"]
+z_index = 3
+position = Vector2(54, 27)
+script = ExtResource("1_r7rqt")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_s3xqb")
+animation = &"explosion"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_pxpge")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

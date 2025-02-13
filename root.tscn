@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://s51hm0vcs0c0"]
+
+[ext_resource type="PackedScene" uid="uid://crccc1pg0jqym" path="res://pantalla1.tscn" id="1_n7fns"]
+[ext_resource type="Script" path="res://root.gd" id="1_qhf2o"]
+[ext_resource type="PackedScene" uid="uid://b1n12ebnck4ld" path="res://estrella.tscn" id="2_lodg6"]
+
+[sub_resource type="Curve2D" id="Curve2D_jlymc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0)
+}
+point_count = 2
+
+[node name="Root" type="Node"]
+script = ExtResource("1_qhf2o")
+estrella = ExtResource("2_lodg6")
+
+[node name="Menu" type="Node" parent="."]
+
+[node name="Pantalla1" parent="." instance=ExtResource("1_n7fns")]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 481.0
+offset_bottom = 721.0
+color = Color(0.0759028, 0.0605518, 0.172677, 1)
+
+[node name="EstrellaSpawn" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jlymc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EstrellaSpawn"]
+
+[node name="EstrellaTimer" type="Timer" parent="."]
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="winner" from="Pantalla1" to="." method="_on_pantalla_1_winner"]
+[connection signal="timeout" from="EstrellaTimer" to="." method="_on_estrella_timer_timeout"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

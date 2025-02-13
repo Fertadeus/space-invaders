@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1n12ebnck4ld"]
+
+[ext_resource type="Texture2D" uid="uid://bioce6e6t43qa" path="res://Art/Estrella.png" id="1_jxbvy"]
+[ext_resource type="Script" path="res://estrella.gd" id="2_gasle"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4s00"]
+radius = 5.0
+
+[node name="Estrella" type="StaticBody2D"]
+z_as_relative = false
+position = Vector2(73, 42)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_gasle")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jxbvy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m4s00")
+disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

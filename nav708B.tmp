@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxp73nwfnbqn"]
+
+[ext_resource type="Script" path="res://nave.gd" id="1_a007w"]
+[ext_resource type="Texture2D" uid="uid://bd4qwfecd5hpx" path="res://Art/PlayerNave.png" id="1_cxcy3"]
+[ext_resource type="PackedScene" uid="uid://dvgxhnhc67omc" path="res://disparo.tscn" id="2_a5rui"]
+[ext_resource type="Texture2D" uid="uid://p11nnl54qpka" path="res://Art/PlayerNaveDerecha.png" id="3_8rguu"]
+[ext_resource type="Texture2D" uid="uid://dtwd710hbdfvs" path="res://Art/PlayerNaveIzquierda.png" id="4_2gla6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twqd5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cxcy3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8rguu")
+}],
+"loop": true,
+"name": &"giroderecha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2gla6")
+}],
+"loop": true,
+"name": &"giroizquierda",
+"speed": 5.0
+}]
+
+[node name="Nave" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_a007w")
+disparo = ExtResource("2_a5rui")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, 4, 7, -2, 7, 11, -8, 11, -8, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_twqd5")
