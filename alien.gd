@@ -11,23 +11,25 @@ signal dead
 # por defecto del alienígena
 func _ready() -> void:
 	scale=scale*3
-	initial_position=position
+	initial_position=self.global_position
+	
 	izq=false
 	$AnimatedSprite2D.play("default")  
 
 # Comprueba si ha llegado al límite de su movimiento, y cambia su dirección si es así.
 # También comprueba si ha llegado al tercer frame, y si es así, libera el objeto.
-func _process(_delta: float) -> void:
-	
-	if position == initial_position+Vector2(150,0):
+func _process(delta: float) -> void:
+
+	if self.global_position.x > initial_position.x+150:
 		izq=true
-	elif position == initial_position:
+		
+	elif self.global_position.x < initial_position.x:
 		izq=false
 		
 	if izq==false:
-		position.x+=1
+		position.x+=70*delta
 	else:
-		position.x-=1
+		position.x-=70*delta
 	if $AnimatedSprite2D.frame==3:
 		queue_free()
 
