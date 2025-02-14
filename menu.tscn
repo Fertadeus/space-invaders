@@ -8,9 +8,9 @@
 script = ExtResource("1_fvfgv")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 176.0
+offset_left = 200.0
 offset_top = 520.0
-offset_right = 264.0
+offset_right = 288.0
 offset_bottom = 574.0
 theme_override_fonts/font = ExtResource("1_d2h6b")
 text = "Jugar"
