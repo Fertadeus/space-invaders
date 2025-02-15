@@ -3,7 +3,7 @@
 
 extends Area2D
 @export var disparo_alien: PackedScene
-var first_row
+var can_shoot
 
 var initial_position # Utilizado para guardar la posición inicial y restringir a partir de ahí
 # el movimiento del alienígena.
@@ -14,9 +14,12 @@ signal dead
 # Guardo la posición inicial, siempre empieza moviéndose a la derecha, y utiliza la animación
 # por defecto del alienígena
 func _ready() -> void:
+	
 	scale=scale*3
 	initial_position=self.global_position
 	izq=false
+	can_shoot=true
+	$Cooldown.wait_time=4+10*randf()
 	$Cooldown.start()
 	$AnimatedSprite2D.play("default")  
 
@@ -34,26 +37,25 @@ func _process(delta: float) -> void:
 		position.x+=70*delta
 	else:
 		position.x-=70*delta
-	if $AnimatedSprite2D.frame==3:
-		queue_free()
-		
 		
 # Cuando termina el timer permite volver a disparar
 func _on_cooldown_timeout() -> void:
 	#if alien==first_row
-	# Aquí podría ponerse una variable adicional que sea front row? y que solo si es true dispare
-	# y que esa variable se actualice si el alien no es front row
-	print("Disparo")
-	var pium = disparo_alien.instantiate()
-	pium.position=position+Vector2(0,20)
-	add_child(pium)
-# Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
+	if can_shoot:
+		print("Disparo")
+		var pium = disparo_alien.instantiate()
+		pium.position=position+Vector2(0,20)
+		add_child(pium)
+		$Cooldown.wait_time=6+13*randf()
 
+# Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
 func _on_area_entered(_area: Area2D) -> void:
 	dead.emit()
+	can_shoot = false
 	$AnimatedSprite2D.play("explosion")
-
-
+	$CollisionShape2D.set_deferred("disabled",true)
+	await get_tree().create_timer(4).timeout
+	queue_free()
 
 # Ideas sobre este objeto:
 #	-Si mueren todos los enemigos de una columna, el resto de aliens debería moverse hasta allí.

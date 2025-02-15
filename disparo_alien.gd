@@ -2,7 +2,7 @@
 # para poder liberar al objeto cuando se salga de la pantalla.
 
 extends Area2D 
-var velocidad=Vector2(0,300) # Velocidad constante de bajada 
+var velocidad=Vector2(0,150) # Velocidad constante de bajada 
 
 
 func _ready() -> void:
@@ -26,5 +26,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func _on_area_entered(_area: Area2D) -> void:
-	# queue_free()
-	pass
+	queue_free()
