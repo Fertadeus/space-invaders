@@ -21,6 +21,7 @@ func _ready() -> void:
 		var aliens= alien.instantiate()
 		aliens.dead.connect(self._score_update)
 		aliens.position=Vector2(45+x*50,100)
+		
 		add_child(aliens)
 		
 	for x in 6:

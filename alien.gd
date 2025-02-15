@@ -2,18 +2,22 @@
 # El AnimatedSprite tiene dos animaciones, default y explosión.
 
 extends Area2D
+@export var disparo_alien: PackedScene
+var first_row
+
 var initial_position # Utilizado para guardar la posición inicial y restringir a partir de ahí
-					 # el movimiento del alienígena.
+# el movimiento del alienígena.
 var izq  # Guarda un boolean que será false si se mueve a la derecha y true si se mueve a la izq.   
 signal dead
+
 
 # Guardo la posición inicial, siempre empieza moviéndose a la derecha, y utiliza la animación
 # por defecto del alienígena
 func _ready() -> void:
 	scale=scale*3
 	initial_position=self.global_position
-	
 	izq=false
+	$Cooldown.start()
 	$AnimatedSprite2D.play("default")  
 
 # Comprueba si ha llegado al límite de su movimiento, y cambia su dirección si es así.
@@ -32,11 +36,23 @@ func _process(delta: float) -> void:
 		position.x-=70*delta
 	if $AnimatedSprite2D.frame==3:
 		queue_free()
-
+		
+		
+# Cuando termina el timer permite volver a disparar
+func _on_cooldown_timeout() -> void:
+	#if alien==first_row
+	# Aquí podría ponerse una variable adicional que sea front row? y que solo si es true dispare
+	# y que esa variable se actualice si el alien no es front row
+	print("Disparo")
+	var pium = disparo_alien.instantiate()
+	pium.position=position+Vector2(0,20)
+	add_child(pium)
 # Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
+
 func _on_area_entered(_area: Area2D) -> void:
 	dead.emit()
 	$AnimatedSprite2D.play("explosion")
+
 
 
 # Ideas sobre este objeto:

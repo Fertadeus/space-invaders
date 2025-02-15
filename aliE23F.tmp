@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dcbg013iwj4be" path="res://Art/Alien1.png" id="1_pd85y"]
 [ext_resource type="Script" path="res://alien.gd" id="1_r7rqt"]
-[ext_resource type="PackedScene" uid="uid://djhfdijisfj23" path="res://disparo_alien.tscn" id="2_y37gw"]
+[ext_resource type="PackedScene" uid="uid://bc6k2gk0nbfnd" path="res://disparo_alien.tscn" id="2_y37gw"]
 [ext_resource type="Texture2D" uid="uid://bwe4pm4grsmx3" path="res://Art/Explosion1.png" id="3_6ht1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kogfp"]
@@ -76,8 +76,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_pxpge")
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 4.0
-autostart = true
+wait_time = 10.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

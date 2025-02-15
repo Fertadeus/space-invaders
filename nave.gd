@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Disparo") && isInCooldown==false:
 		var pium= disparo.instantiate()
-		pium.position=position
+		pium.position=position+Vector2(0,-4)
 		isInCooldown=true
 		$Cooldown.start()
 		add_child(pium)

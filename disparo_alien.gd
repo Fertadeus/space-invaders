@@ -2,12 +2,13 @@
 # para poder liberar al objeto cuando se salga de la pantalla.
 
 extends Area2D 
-var velocidad=Vector2(0,-300) # Quiero que la velocidad sea constante para todos los disparos 
+var velocidad=Vector2(0,300) # Velocidad constante de bajada 
 
 
 func _ready() -> void:
+	print('ready')
 	set_as_top_level(true)  # Sin esta línea de código, coge ciertas propiedades de el objeto padre.
-	scale.x=scale.x+0.8
+	scale.x=scale.x*2
 	scale.y=scale.x
 	
   
@@ -15,6 +16,8 @@ func _ready() -> void:
 # Básicamente, es la fórmula del MRU aplicada aquí (y delta es el tiempo desde el frame anterior)
 func _process(delta: float) -> void:
 	position+=delta*velocidad
+	
+
 
 # Las dos funciones siguientes liberan la memoria que ocupa el disparo (eliminándolo efectivamente)
 # Una ocurre cuando el disparo sale de la pantalla, otra cuando entra en algún área. Presumiblemente
@@ -23,4 +26,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func _on_area_entered(_area: Area2D) -> void:
-	queue_free()
+	# queue_free()
+	pass
