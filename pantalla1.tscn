@@ -19,3 +19,5 @@ offset_right = 475.0
 offset_bottom = 34.0
 theme_override_fonts/font = ExtResource("5_kwlkn")
 horizontal_alignment = 1
+
+[connection signal="destroy_nave" from="." to="Nave" method="_on_pantalla_1_destroy_nave"]

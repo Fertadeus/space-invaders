@@ -1,10 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxp73nwfnbqn"]
+[gd_scene load_steps=11 format=3 uid="uid://dxp73nwfnbqn"]
 
 [ext_resource type="Script" path="res://nave.gd" id="1_a007w"]
 [ext_resource type="Texture2D" uid="uid://mspef151xvbx" path="res://Art/PlayerNave.png" id="1_cxcy3"]
 [ext_resource type="PackedScene" uid="uid://dvgxhnhc67omc" path="res://disparo.tscn" id="2_a5rui"]
 [ext_resource type="Texture2D" uid="uid://bb2rms1a3hjyx" path="res://Art/PlayerNaveDerecha.png" id="3_8rguu"]
 [ext_resource type="Texture2D" uid="uid://d4ndxqx6kbom3" path="res://Art/PlayerNaveIzquierda.png" id="4_2gla6"]
+[ext_resource type="Texture2D" uid="uid://b4md1v6lfc1ct" path="res://Art/Explosion_nave.png" id="4_rb0cc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cka5r"]
+atlas = ExtResource("4_rb0cc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hqfi"]
+atlas = ExtResource("4_rb0cc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mkhj"]
+atlas = ExtResource("4_rb0cc")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twqd5"]
 animations = [{
@@ -16,7 +29,16 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cka5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hqfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mkhj")
+}],
 "loop": true,
 "name": &"explosion",
 "speed": 5.0
@@ -54,6 +76,7 @@ polygon = PackedVector2Array(0, 4, 7, -2, 7, 11, -8, 11, -8, -2)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_twqd5")
 animation = &"explosion"
+frame_progress = 0.618101
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

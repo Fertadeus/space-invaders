@@ -2,7 +2,7 @@ extends Node
 @export var alien: PackedScene
 var score
 signal winner
-
+signal destroy_nave
 # Inicializo el score.
 
 func _ready() -> void:
@@ -66,6 +66,7 @@ func win():
 	queue_free()
 	
 func _lose():
+	destroy_nave.emit()
 	var pantalla=get_viewport().size
 	$Label.text= "¡HAS PERDIDO!"
 

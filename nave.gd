@@ -7,12 +7,14 @@ extends CharacterBody2D
 var isInCooldown # Variable que guardará un Boolean, que indicará si el jugador puede disparar o no
 var screen_size
 
+
 # Set posicion y permiso de disparo
 func _ready() -> void:
 	screen_size = get_viewport_rect().size #Recoge el tamaño de la pantalla en una variable
 	position.x = screen_size.x/2  # Posición inicial
 	position.y = (screen_size.y/6)*5
 	isInCooldown=false  # Empieza pudiendo disparar
+	
 
 # MRU para la nave, comprueba ciertos Inputs para realizar las acciones.
 func _physics_process(delta: float) -> void:
@@ -55,21 +57,9 @@ func _physics_process(delta: float) -> void:
 # Cuando termina el timer permite volver a disparar
 func _on_cooldown_timeout() -> void:
 	isInCooldown=false
-	
 
-## ESTO NO FUNCIONA PORQUE NO ES UN AREA2D.
-# https://forum.godotengine.org/t/collisionpolygon2d-doesnt-have-a-collision-signal/619
 
-# https://docs.godotengine.org/en/stable/tutorials/physics/using_character_body_2d.html#using-characterbody2d-3d
-
-# UNA ALTERNATIVA ES QUE CUANDO LA BALA TOCA LA NAVE DESDE LA PROPIA BALA SE MANDE LA SEÑAL??
-
-#func _on_area_entered(area: Area2D) -> void:
-	#print('hola')
-	#print(area.name)
-	#if area.name == "Disparo_alien":
-		#$CollisionShape2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya se ha destruido
-		#$AnimatedSprite2D.play("explosion") # FALTA CREAR LA ANIMACIÓN
-		#$AnimatedSprite2D.hide()
-		#game_over.emit()
-		#queue_free()
+func _on_pantalla_1_destroy_nave() -> void:
+	$CollisionPolygon2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya se ha destruido
+	$AnimatedSprite2D.play("explosion")
+	queue_free()

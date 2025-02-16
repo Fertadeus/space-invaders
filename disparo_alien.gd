@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 	position+=delta*velocidad
 	
 
-
 # Las dos funciones siguientes liberan la memoria que ocupa el disparo (eliminándolo efectivamente)
 # Una ocurre cuando el disparo sale de la pantalla, otra cuando entra en algún área. Presumiblemente
 # habrá dos áreas: la cobertura y los aliens enemigos.
