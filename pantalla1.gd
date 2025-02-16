@@ -34,7 +34,7 @@ func _ready() -> void:
 		id_list.append(column_ids)
 	alien_dict[1].alien_dict = alien_dict
 	alien_dict[1].id_list = id_list
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

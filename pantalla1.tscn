@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://pantalla1.gd" id="1_cm6s1"]
 [ext_resource type="PackedScene" uid="uid://dnyxhm2c830pd" path="res://alien.tscn" id="3_kvu7s"]
 [ext_resource type="PackedScene" uid="uid://dxp73nwfnbqn" path="res://nave.tscn" id="4_dult8"]
-[ext_resource type="FontFile" uid="uid://cgbpovnokrkdu" path="res://Art/Pixeled.ttf" id="5_kwlkn"]
+[ext_resource type="FontFile" uid="uid://d0xgykhj08l82" path="res://Art/Pixeled.ttf" id="5_kwlkn"]
 
 [node name="Pantalla1" type="Node"]
 script = ExtResource("1_cm6s1")

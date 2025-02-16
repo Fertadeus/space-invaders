@@ -4,12 +4,12 @@
 extends Area2D
 @export var disparo_alien: PackedScene
 
-static var alien_dict # Variable comun para todos los aliens
+static var alien_dict # Variable comun para todos los aliens y relaciona cada id con su escena Alien
 static var id_list # Variable comun para todos los aliens con los ids de los aliens vivos 
 var can_shoot
 var id
-var initial_position # Utilizado para guardar la posición inicial y restringir a partir de ahí
 var column
+var initial_position # Utilizado para guardar la posición inicial y restringir a partir de ahí
 # el movimiento del alienígena.
 var izq  # Guarda un boolean que será false si se mueve a la derecha y true si se mueve a la izq.   
 signal dead
@@ -51,8 +51,8 @@ func _on_cooldown_timeout() -> void:
 
 # Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
 func _on_area_entered(area: Area2D) -> void:
-	# Solo si lo que entra en el area es un disparo
-	if area.name == 'Disparo':
+	# Solo si lo que entra en el area es un disparo de la nave
+	if area.get_parent().name == 'Nave':
 		dead.emit()
 		can_shoot = false # Ya está muerto, así que no puede disparar
 		$CollisionShape2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya está muerto
@@ -65,8 +65,8 @@ func _on_area_entered(area: Area2D) -> void:
 			# El nuevo alien ya puede disparar
 			alien_dict[id_max].can_shoot=true
 		# No lo eliminamos hasta que las balas salen de la pantalla
-		await get_tree().create_timer(4).timeout
-		queue_free()
+			await get_tree().create_timer(5).timeout
+			queue_free()
 
 # Ideas para mejora:
 #	-Si mueren todos los enemigos de una columna, el resto de aliens debería moverse hasta allí.

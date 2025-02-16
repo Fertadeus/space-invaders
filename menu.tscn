@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bn12qme0gabgp"]
 
-[ext_resource type="FontFile" uid="uid://cgbpovnokrkdu" path="res://Art/Pixeled.ttf" id="1_d2h6b"]
+[ext_resource type="FontFile" uid="uid://d0xgykhj08l82" path="res://Art/Pixeled.ttf" id="1_d2h6b"]
 [ext_resource type="Script" path="res://menu.gd" id="1_fvfgv"]
-[ext_resource type="Texture2D" uid="uid://ckc7pmxmxft1v" path="res://Art/Titulo.png" id="2_ru4nq"]
+[ext_resource type="Texture2D" uid="uid://c2ncr6ume0vn5" path="res://Art/Titulo.png" id="2_ru4nq"]
 [ext_resource type="AudioStream" uid="uid://cvjkuhlfr74yc" path="res://Art/Space-InvadersTheme.wav" id="4_6sgdf"]
 
 [node name="Menu" type="Node"]
