@@ -6,7 +6,6 @@ var velocidad=Vector2(0,150) # Velocidad constante de bajada
 
 
 func _ready() -> void:
-	print('ready')
 	set_as_top_level(true)  # Sin esta línea de código, coge ciertas propiedades de el objeto padre.
 	scale.x=scale.x*2
 	scale.y=scale.x

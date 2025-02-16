@@ -10,26 +10,32 @@ func _ready() -> void:
 	score=0
 	$Label.text=str(score)
 	
+	var id_list = []
+	var alien_dict = {}
+	var id = 1
+	
 	# Instancio una fila de aliens por cada uno de los for.
-	for x in 6:
-		var aliens= alien.instantiate()
-		aliens.dead.connect(self._score_update)
-		aliens.position=Vector2(45+x*50,50)
-		add_child(aliens)
-		
-	for x in 6:
-		var aliens= alien.instantiate()
-		aliens.dead.connect(self._score_update)
-		aliens.position=Vector2(45+x*50,100)
-		
-		add_child(aliens)
-		
-	for x in 6:
-		var aliens= alien.instantiate()
-		aliens.dead.connect(self._score_update)
-		aliens.position=Vector2(45+x*50,150)
-		add_child(aliens)
-		
+	for column in 6:
+		var column_ids = []
+		for row in [50,100,150]:
+			var current_alien = alien.instantiate()
+			alien_dict[id] = current_alien
+			column_ids.append(id)
+			current_alien.dead.connect(self._score_update)
+			current_alien.position=Vector2(45+column*50,row)
+			current_alien.id=id
+			current_alien.column=column
+			if row==150:
+				current_alien.can_shoot=true
+			else:
+				current_alien.can_shoot=false
+			add_child(current_alien)
+			id+=1
+		id_list.append(column_ids)
+	alien_dict[1].alien_dict = alien_dict
+	alien_dict[1].id_list = id_list
+	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
