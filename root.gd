@@ -1,12 +1,12 @@
 extends Node
 @export var estrella: PackedScene
-#
+@export var pantalla1: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var main = self.get_node("Pantalla1")
-	self.remove_child(main)
-	main.call_deferred("free")
+	#var main = self.get_node("Pantalla1")
+	#self.remove_child(main)
+	#main.call_deferred("free")
 	
 	$EstrellaTimer.start()
 	
@@ -29,20 +29,6 @@ func _on_estrella_timer_timeout() -> void:
 	add_child(star)
 
 
-func _on_win_timer_timeout() -> void:
-	var main = self.get_node("Pantalla1")
-	self.remove_child(main)
-	main.call_deferred("free")
-	
-	var menu_resource = load("res://menu.tscn")
-	var menu = menu_resource.instantiate()
-	menu.play.connect(self._on_menu_play)
-	self.add_child(menu)
-
-
-
-func _on_pantalla_1_winner() -> void:
-	$WinTimer.start()
 
 
 func _on_menu_play() -> void:
@@ -54,3 +40,12 @@ func _on_menu_play() -> void:
 	var main = main_resource.instantiate()
 	main.winner.connect(self._on_pantalla_1_winner)
 	self.add_child(main)
+
+func _on_pantalla_1_winner() -> void:
+	$WinTimer.start()
+	
+func _on_win_timer_timeout() -> void:
+	var menu_resource = load("res://menu.tscn")
+	var menu = menu_resource.instantiate()
+	menu.play.connect(self._on_menu_play)
+	self.add_child(menu)

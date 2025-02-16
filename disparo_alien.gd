@@ -2,6 +2,7 @@
 # para poder liberar al objeto cuando se salga de la pantalla.
 
 extends Area2D 
+signal game_over
 var velocidad=Vector2(0,150) # Velocidad constante de bajada 
 
 
@@ -27,3 +28,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "Nave" or area.name=="Nave":
 		queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	game_over.emit() # Si la bala toca la nave, que es un body, emite hit
+	queue_free()

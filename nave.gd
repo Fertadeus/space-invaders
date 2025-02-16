@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var disparo: PackedScene
 var isInCooldown # Variable que guardará un Boolean, que indicará si el jugador puede disparar o no
 var screen_size
-signal game_over
 
 # Set posicion y permiso de disparo
 func _ready() -> void:

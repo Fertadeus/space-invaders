@@ -14,8 +14,7 @@ point_count = 2
 [node name="Root" type="Node"]
 script = ExtResource("1_qhf2o")
 estrella = ExtResource("2_lodg6")
-
-[node name="Pantalla1" parent="." instance=ExtResource("1_n7fns")]
+pantalla1 = ExtResource("1_n7fns")
 
 [node name="Fondo" type="ColorRect" parent="."]
 offset_right = 481.0
@@ -35,7 +34,6 @@ one_shot = true
 
 [node name="Menu" parent="." instance=ExtResource("4_3b6v1")]
 
-[connection signal="winner" from="Pantalla1" to="." method="_on_pantalla_1_winner"]
 [connection signal="timeout" from="EstrellaTimer" to="." method="_on_estrella_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
 [connection signal="play" from="Menu" to="." method="_on_menu_play"]

@@ -4,6 +4,7 @@
 extends Area2D
 @export var disparo_alien: PackedScene
 
+
 static var alien_dict # Variable comun para todos los aliens y relaciona cada id con su escena Alien
 static var id_list # Variable comun para todos los aliens con los ids de los aliens vivos 
 var can_shoot
@@ -13,6 +14,7 @@ var initial_position # Utilizado para guardar la posición inicial y restringir 
 # el movimiento del alienígena.
 var izq  # Guarda un boolean que será false si se mueve a la derecha y true si se mueve a la izq.   
 signal dead
+signal lost
 
 
 # Guardo la posición inicial, siempre empieza moviéndose a la derecha, y utiliza la animación
@@ -46,6 +48,7 @@ func _on_cooldown_timeout() -> void:
 	if can_shoot:
 		var pium = disparo_alien.instantiate()
 		pium.position=position+Vector2(0,20)
+		pium.game_over.connect(self.game_over)
 		add_child(pium)
 		$Cooldown.wait_time=6+13*randf()
 
@@ -68,6 +71,9 @@ func _on_area_entered(area: Area2D) -> void:
 			await get_tree().create_timer(5).timeout
 			queue_free()
 
+func game_over():
+	lost.emit()
+	
 # Ideas para mejora:
 #	-Si mueren todos los enemigos de una columna, el resto de aliens debería moverse hasta allí.
 #	 Se me ocurren dos ideas (muy generales) para poder hacer que esto suceda. 
