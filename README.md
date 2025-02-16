@@ -1,4 +1,3 @@
+TODO:
 - Eliminar archivos temporales
-- Que solo disparen los de abajo 
-- Que la música del disparo no se apague hasta que termine?
-- Quitar los prints
+- Que la nave muera cuando recibe un disparo de alien
