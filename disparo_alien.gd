@@ -28,4 +28,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.name != "Alien":
 		queue_free()
 	#if area.name == "Disparo" or area.name=="Nave":
+	## Esto no funciona, por algún motivo a veces los disparos no desaparecen cuando les das con 
+	## el disparo_alien, otras sí. La otra forma sí que funciona siempre
 		#queue_free()
