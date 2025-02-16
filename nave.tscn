@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxp73nwfnbqn"]
 
 [ext_resource type="Script" path="res://nave.gd" id="1_a007w"]
-[ext_resource type="Texture2D" uid="uid://bd4qwfecd5hpx" path="res://Art/PlayerNave.png" id="1_cxcy3"]
+[ext_resource type="Texture2D" uid="uid://mspef151xvbx" path="res://Art/PlayerNave.png" id="1_cxcy3"]
 [ext_resource type="PackedScene" uid="uid://dvgxhnhc67omc" path="res://disparo.tscn" id="2_a5rui"]
-[ext_resource type="Texture2D" uid="uid://p11nnl54qpka" path="res://Art/PlayerNaveDerecha.png" id="3_8rguu"]
-[ext_resource type="Texture2D" uid="uid://dtwd710hbdfvs" path="res://Art/PlayerNaveIzquierda.png" id="4_2gla6"]
+[ext_resource type="Texture2D" uid="uid://bb2rms1a3hjyx" path="res://Art/PlayerNaveDerecha.png" id="3_8rguu"]
+[ext_resource type="Texture2D" uid="uid://d4ndxqx6kbom3" path="res://Art/PlayerNaveIzquierda.png" id="4_2gla6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twqd5"]
 animations = [{
@@ -14,6 +14,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"explosion",
 "speed": 5.0
 }, {
 "frames": [{
@@ -48,6 +53,7 @@ polygon = PackedVector2Array(0, 4, 7, -2, 7, 11, -8, 11, -8, -2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_twqd5")
+animation = &"explosion"
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

@@ -68,12 +68,10 @@ func _on_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(4).timeout
 		queue_free()
 
-# Ideas sobre este objeto:
+# Ideas para mejora:
 #	-Si mueren todos los enemigos de una columna, el resto de aliens debería moverse hasta allí.
 #	 Se me ocurren dos ideas (muy generales) para poder hacer que esto suceda. 
-#	 1ª idea: guardar los aliens en arrays de columnas. Cuando una columna termina, cambiar la pos
-#	 inicial del objeto.
+#	 1ª idea: Cuando una columna termina, cambiar la posinicial del objeto.
 #	 2ª idea: crear CollisionShape adicionales en los aliens, que ocupen un área a su alrededor.
 #    Cambiar el movimiento para que los aliens no puedan meterse dentro de un área que no sea suya.
-#	
-#	 De todas formas, esto no es necesario. Funciona bien así y no merece la pena la molestia.
+#

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvgxhnhc67omc"]
 
 [ext_resource type="Script" path="res://disparo.gd" id="1_rmqu8"]
-[ext_resource type="Texture2D" uid="uid://brhaxqhm6fqhn" path="res://Art/Disparo.png" id="1_vlk6o"]
+[ext_resource type="Texture2D" uid="uid://dfhgsq5d8gdmi" path="res://Art/Disparo.png" id="1_vlk6o"]
 [ext_resource type="AudioStream" uid="uid://xi741ct2l8me" path="res://Art/Laser.wav" id="3_r68vp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb6n3"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://dnyxhm2c830pd"]
 
-[ext_resource type="Texture2D" uid="uid://dcbg013iwj4be" path="res://Art/Alien1.png" id="1_pd85y"]
+[ext_resource type="Texture2D" uid="uid://c7tps4ir6tckc" path="res://Art/Alien1.png" id="1_pd85y"]
 [ext_resource type="Script" path="res://alien.gd" id="1_r7rqt"]
 [ext_resource type="PackedScene" uid="uid://djhfdijisfj23" path="res://disparo_alien.tscn" id="2_y37gw"]
-[ext_resource type="Texture2D" uid="uid://bwe4pm4grsmx3" path="res://Art/Explosion1.png" id="3_6ht1j"]
+[ext_resource type="Texture2D" uid="uid://bsrag0u6qi6ft" path="res://Art/Explosion1.png" id="3_6ht1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kogfp"]
 atlas = ExtResource("1_pd85y")

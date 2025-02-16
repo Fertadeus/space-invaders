@@ -39,6 +39,10 @@ func _physics_process(delta: float) -> void:
 	# una vez simuladas devuelve el movimiento que tiene que realizar. Nótese que para este juego
 	# concreto, el tipo de movimiento está declarado en el Inspector de variables como 'Floating'.
 	move_and_slide()
+	print(get_slide_collision_count())
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		print("I collided with ", collision.get_collider().name)
 	
 	#Evito que salga de la pantalla
 	position = position.clamp(Vector2(8,0), screen_size-Vector2(8,0))
@@ -55,3 +59,21 @@ func _physics_process(delta: float) -> void:
 # Cuando termina el timer permite volver a disparar
 func _on_cooldown_timeout() -> void:
 	isInCooldown=false
+	
+
+## ESTO NO FUNCIONA PORQUE NO ES UN AREA2D.
+#https://forum.godotengine.org/t/collisionpolygon2d-doesnt-have-a-collision-signal/619
+
+# https://docs.godotengine.org/en/stable/tutorials/physics/using_character_body_2d.html#using-characterbody2d-3d
+
+# UNA ALTERNATIVA ES QUE CUANDO LA BALA TOCA LA NAVE DESDE LA PROPIA BALA SE MANDE LA SEÑAL??
+#func _on_area_entered(area: Area2D) -> void:
+	#print('hola')
+	#print(area.name)
+	#if area.name == "Disparo_alien":
+		#$CollisionShape2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya se ha destruido
+		#$AnimatedSprite2D.play("explosion") # FALTA CREAR LA ANIMACIÓN
+		#$AnimatedSprite2D.hide()
+		## No lo eliminamos hasta que termina el sonido de PIUM
+		#queue_free()
+		## aquí habría que emitir una señal que fuera GAME OVER?
