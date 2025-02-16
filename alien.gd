@@ -50,21 +50,23 @@ func _on_cooldown_timeout() -> void:
 		$Cooldown.wait_time=6+13*randf()
 
 # Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
-func _on_area_entered(_area: Area2D) -> void:
-	dead.emit()
-	can_shoot = false # Ya está muerto, así que no puede disparar
-	$CollisionShape2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya está muerto
-	$AnimatedSprite2D.play("explosion")
-	# Eliminamos el alien de la lista de ids porque ha muerto
-	id_list[column].erase(id)
-	if len(id_list[column]) > 0:
-		# Cogemos la id del alien que está al frente de la columna donde ha muerto nuestro alien
-		var id_max = id_list[column].max()
-		# El nuevo alien ya puede disparar
-		alien_dict[id_max].can_shoot=true
-	# No lo eliminamos hasta que las balas salen de la pantalla
-	await get_tree().create_timer(4).timeout
-	queue_free()
+func _on_area_entered(area: Area2D) -> void:
+	# Solo si lo que entra en el area es un disparo
+	if area.name == 'Disparo':
+		dead.emit()
+		can_shoot = false # Ya está muerto, así que no puede disparar
+		$CollisionShape2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya está muerto
+		$AnimatedSprite2D.play("explosion")
+		# Eliminamos el alien de la lista de ids porque ha muerto
+		id_list[column].erase(id)
+		if len(id_list[column]) > 0:
+			# Cogemos la id del alien que está al frente de la columna donde ha muerto nuestro alien
+			var id_max = id_list[column].max()
+			# El nuevo alien ya puede disparar
+			alien_dict[id_max].can_shoot=true
+		# No lo eliminamos hasta que las balas salen de la pantalla
+		await get_tree().create_timer(4).timeout
+		queue_free()
 
 # Ideas sobre este objeto:
 #	-Si mueren todos los enemigos de una columna, el resto de aliens debería moverse hasta allí.
