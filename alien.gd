@@ -23,13 +23,15 @@ func _ready() -> void:
 	scale=scale*3
 	initial_position=self.global_position
 	izq=false
-	$Cooldown.wait_time=4+10*randf()
+	$Cooldown.wait_time=5*randf()+1
 	$Cooldown.start()
+	
 	$AnimatedSprite2D.play("default")  
 
 # Comprueba si ha llegado al límite de su movimiento, y cambia su dirección si es así.
 # También comprueba si ha llegado al tercer frame, y si es así, libera el objeto.
 func _process(delta: float) -> void:
+
 
 	if self.global_position.x > initial_position.x+150:
 		izq=true
@@ -44,13 +46,15 @@ func _process(delta: float) -> void:
 		
 # Cuando termina el timer permite volver a disparar
 func _on_cooldown_timeout() -> void:
-	#if alien==first_row
+	$Cooldown.stop()
+	$Cooldown.wait_time=4+4*randf()
+	$Cooldown.start()
 	if can_shoot:
 		var pium = disparo_alien.instantiate()
 		pium.position=position+Vector2(0,20)
 		pium.game_over.connect(self.game_over)
 		add_child(pium)
-		$Cooldown.wait_time=6+13*randf()
+		
 
 # Si algún área entra en este objeto, emite su señal "dead" y cambia su animación a explosión.
 func _on_area_entered(area: Area2D) -> void:

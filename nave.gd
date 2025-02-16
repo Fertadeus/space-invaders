@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var disparo: PackedScene
 var isInCooldown # Variable que guardará un Boolean, que indicará si el jugador puede disparar o no
 var screen_size
+var dead
 
 
 # Set posicion y permiso de disparo
@@ -14,6 +15,7 @@ func _ready() -> void:
 	position.x = screen_size.x/2  # Posición inicial
 	position.y = (screen_size.y/6)*5
 	isInCooldown=false  # Empieza pudiendo disparar
+	dead=false
 	
 
 # MRU para la nave, comprueba ciertos Inputs para realizar las acciones.
@@ -47,12 +49,13 @@ func _physics_process(delta: float) -> void:
 	
 	# Cambio su animación dependiendo de la velocidad que lleve. También podría haberlo hecho arriba,
 	# esto es por si en algún momento quiero añadirle algún tipo de aceleración a la nave.
-	if velocity.x>0:		
-		$AnimatedSprite2D.animation="giroderecha"
-	elif velocity.x<0:	
-		$AnimatedSprite2D.animation="giroizquierda"
-	elif velocity.x==0:
-		$AnimatedSprite2D.animation="default"
+	if dead==false:
+		if velocity.x>0:		
+			$AnimatedSprite2D.animation="giroderecha"
+		elif velocity.x<0:	
+			$AnimatedSprite2D.animation="giroizquierda"
+		elif velocity.x==0:
+			$AnimatedSprite2D.animation="default"
 
 # Cuando termina el timer permite volver a disparar
 func _on_cooldown_timeout() -> void:
@@ -60,6 +63,7 @@ func _on_cooldown_timeout() -> void:
 
 
 func _on_pantalla_1_destroy_nave() -> void:
+	dead=true
 	$CollisionPolygon2D.set_deferred("disabled",true) #Eliminamos la colisión porque ya se ha destruido
+	scale=scale*2
 	$AnimatedSprite2D.play("explosion")
-	queue_free()

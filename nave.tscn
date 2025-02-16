@@ -38,8 +38,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7mkhj")
+}, {
+"duration": 1.0,
+"texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"explosion",
 "speed": 5.0
 }, {
@@ -76,7 +79,6 @@ polygon = PackedVector2Array(0, 4, 7, -2, 7, 11, -8, 11, -8, -2)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_twqd5")
 animation = &"explosion"
-frame_progress = 0.618101
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

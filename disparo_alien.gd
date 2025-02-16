@@ -29,6 +29,6 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	game_over.emit() # Si la bala toca la nave, que es un body, emite hit
 	queue_free()

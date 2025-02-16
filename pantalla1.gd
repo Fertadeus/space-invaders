@@ -1,12 +1,15 @@
 extends Node
 @export var alien: PackedScene
 var score
+var screen_ended
 signal winner
 signal destroy_nave
+
 # Inicializo el score.
 
 func _ready() -> void:
-
+	
+	screen_ended=false
 	score=0
 	$Label.text=str(score)
 	
@@ -39,25 +42,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	## Para testear, si pulsas la tecla F se gana automáticamente
-	if Input.is_action_just_pressed("AutoWin"):
-		win()
-	# pass
+	pass
 
 
 #Cambia la variable "score" y luego actualiza el Label. Si llega a cierta cantidad de puntos, llama 
 # a la funcion win.  
 func _score_update():  
-	score+=10
-	$Label.text=str(score)
-	if score == 180:
-		win()
+	if screen_ended==false:
+		score+=10
+		$Label.text=str(score)
+		if score == 180:
+			win()
 
 # Muestra en pantalla "HAS GANADO" con el label utilizado para el score
 func win():
 	var pantalla=get_viewport().size
+	screen_ended=true
 	$Label.text= "¡HAS GANADO!"
-
+	
 	$Label.position.x=pantalla.x/2-($Label.size.x*1.25)+2
 	$Label.position.y=pantalla.y/2-($Label.size.x*1.25)
 	
@@ -66,6 +68,8 @@ func win():
 	queue_free()
 	
 func _lose():
+	
+	screen_ended=true
 	destroy_nave.emit()
 	var pantalla=get_viewport().size
 	$Label.text= "¡HAS PERDIDO!"
